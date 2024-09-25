@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  user-service:
+    build: user-service/
+    image: "user-service"
+    container_name: user-service
+    ports:
+      - "8080:8080"
+
+  company-service:
+    build: company-service/
+    image: "company-service"
+    container_name: company-service
+    ports:
+      - "9090:9090"
+    environment:
+      - USER_SERVICE_URL=http://user-server:9090 #вместо 8080
+#      - USER_CLIENT_URL=http://user-server:9090
